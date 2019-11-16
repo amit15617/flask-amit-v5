@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<br>
+
+<h1 style="color:darkgreen;"> List of Products currently available in store now...!</h1>
+<br> 
+
+ <div class="table-responsive">
+  <table class="table table-striped table-dark">
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Category</th>
+          </tr>
+          
+          {%for i in products%} 
+          <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.description}}</td>
+            <td>{{i.price}}</td>
+            <td>{{i.category}}</td>
+          </tr>
+          {% endfor %}
+    </table>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+    <div class="jumbotron" style="text-align:center;">
+		<h1 style="color:darkgreen;">Welcome...Please signup !</h1>
+		<br>
+		<h3 style="color:maroon;"> Enter your details below</h3>
+		<br> <br>
+        <form method="POST">
+        	{{ form.hidden_tag() }}
+        	<div class="form-group">
+       		{{ form.email.label(class="control-label col-sm-2") }}{{ form.email(class = 'form-control col-sm-8"') }}
+       		</div>	
+       		<div class="form-group">
+       		{{ form.username.label(class="control-label col-sm-2") }}{{ form.username(class = 'form-control col-sm-8"') }}
+       		</div>
+       		<div class="form-group">
+    		{{ form.password.label(class="control-label col-sm-2") }} {{ form.password(class = 'form-control') }}
+    		</div>
+
+       		<div class="form-group">
+    		{{ form.pass_confirm.label(class="control-label col-sm-2") }} {{ form.pass_confirm(class = 'form-control') }}
+    		</div>
+    		<div class="form-group">
+    		{{form.submit(class = 'btn btn-primary')}}
+    		</div>
+	 	</form>
+    </div>
+{% endblock %}

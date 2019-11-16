@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron" style="text-align: center">
+  <h1>Welcome to Smart Store</h1>
+  {% if current_user.is_authenticated %}
+    <p>Hello, {{ current_user.username }}!</p>
+  {% else %}
+    <br> <br>
+    <h4 style="color:rgb(226, 9, 100)">Please Sign Up if you are a new user.</h4>
+    
+
+  {% endif %}
+</div>
+<p>SmartStores is a technology news site targeted at developments in the retail sector. It covers topics in retail as diverse as privacy to technologies that are bringing retail into the 21st century.
+
+    Today’s retail environment competes head on with an ever increasing online world of shopping and shipping. The online world certainly has advantages that include: purchasing from your home, smart tracking, loaded preferences, and recommendations. But retail is reacting in a positive way by utilizing its own advantages like the personal touch, interacting and presentation of products, as well as the ability to attract passers by.</p>
+<div class="jumbotron">
+  <h3>Products in this store...</h3>
+  <ol>
+    <li>Mobile</li>
+    <li>TV</li>
+    <li>Laptop</li>
+    <li>Power Bank</li>
+    <li>Digital Watch</li>
+  </ul>
+
+</div>    
+{% endblock %}

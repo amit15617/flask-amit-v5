@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block content %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<div class="jumbotron" style="text-align:center;">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Sucessfully Logged In </h4>
+        <p>Now you can ADD products in store as well as can see the Bar-Plot of those products.</p>
+        <hr>
+        <p class="mb-0">Scroll Down to see bar chart.</p>
+      </div>
+      
+</div>    
+<div class="jumbotron" style="text-align:center;">
+    <h2>ADMIN CAN ADD PRODUCTS BELOW</h2>
+    <BR>
+    
+    <form method= "POST" class="col-md-5 form-group">
+                            {{ form.hidden_tag() }}
+                            {{form.name.label}} {{form.name(placeholder="Enter Name",class="form-control my-1",style="border:0; border-bottom: 1px solid #CDCDCD;") }}
+                            {{form.description.label}}{{form.description(placeholder = "Description",class="form-control my-1",style="border:0; border-bottom: 1px solid #CDCDCD;")}}
+                            {{form.price.label}}{{form.price(placeholder = "Price", class = "form-control my-1", style="border:0; border-bottom: 1px solid #CDCDCD;")}}
+                            {{form.category.label}}{{form.category(placeholder="Category",class="form-control my-1",style="border:0; border-bottom: 1px solid #CDCDCD;")}}
+                            <br>
+                            <div class="form-group">
+                            {{form.submit(class = 'btn btn-primary')}}
+            </div>                        
+    </form>
+  </div>
+  
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<style>
+    
+    
+    </style>
+    
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Category');
+        data.addColumn('number', 'Count');
+        {% for i in product_list%}
+        
+        {% if i[0]!=None%}
+        data.addRow(['{{i[0].replace("&#39;",",")}}',{{i[1]}}]);
+        
+         {% endif%}
+        {% endfor%}
+
+        
+        
+        // Set chart options
+        var options = {'title':'Different Products with their count',
+                       'width':550,
+                       'height':400,
+                       'bars': 'vertical'};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+        
+      }
+      // price chart ****************
+      function drawChartPrice() {
+
+        // Create the data table.
+        var data1 = new google.visualization.DataTable();
+        data.addColumn('string', 'Price');
+        data.addColumn('number', 'Count');
+        {% for i in product_price%}
+
+        {% if i[0]!=None%}
+        data.addRow(['{{i[0].replace("&#39;",",")}}',{{i[1]}}]);
+
+        {% endif%}
+        {% endfor%}
+
+
+
+        // Set chart options
+        var options = {'title':'Different Products with their count',
+                      'width':550,
+                      'height':400,
+                      'bars': 'vertical'};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data1, options);
+
+      }
+    </script>
+<h2> Bar Plot</h2>
+<div id="chart_div"></div>
+
+               
+{% endblock %}
