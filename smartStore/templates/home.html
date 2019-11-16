@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="jumbotron" style="text-align: center">
-  <h1>Welcome to Smart Store</h1>
+  <h1>Welcome to Smart Store !</h1>
   {% if current_user.is_authenticated %}
     <p>Hello, {{ current_user.username }}!</p>
   {% else %}
