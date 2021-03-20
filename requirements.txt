@@ -30,7 +30,7 @@ idna==2.6
 
 itsdangerous==0.24
 
-Jinja2==2.10
+Jinja2==2.11.3
 
 lazy==1.3
 
